@@ -80,7 +80,7 @@ DrawPolygon.onStop = function(state) {
   state.polygon.removeCoordinate(`0.${state.currentVertexPosition}`);
   if (state.polygon.isValid()) {
     state.polygon.id = hat();
-    this.deleteFeature(['__drawing_in_progress____'], { silent: true });
+    this.deleteFeature(['__drawing_in_progress__'], { silent: true });
     this.addFeature(state.polygon);
     this.map.fire(Constants.events.CREATE, {
       features: [state.polygon.toGeoJSON()]
