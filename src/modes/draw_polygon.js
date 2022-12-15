@@ -81,6 +81,8 @@ DrawPolygon.onStop = function(state) {
   if (state.polygon.isValid()) {
     state.polygon.id = hat();
     this.clearSelectedFeatures();
+    this.deleteFeature(['__drawing_in_progress____']);
+    this.addFeature(state.polygon);
     this.map.fire(Constants.events.CREATE, {
       features: [state.polygon.toGeoJSON()]
     });

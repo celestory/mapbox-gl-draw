@@ -134,7 +134,6 @@ export default function(ctx, api) {
   };
 
   api.deleteAll = function() {
-    console.log(ctx.store);
     ctx.store.delete(ctx.store.getAllIds().filter(id => id !== '__drawing_in_progress__'), { silent: true });
     // If we were in direct select mode, now our selected feature no longer exists,
     // so escape that mode.
