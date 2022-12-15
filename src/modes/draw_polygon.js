@@ -1,3 +1,4 @@
+import hat from 'hat';
 import * as CommonSelectors from '../lib/common_selectors';
 import doubleClickZoom from '../lib/double_click_zoom';
 import * as Constants from '../constants';
@@ -15,7 +16,7 @@ DrawPolygon.onSetup = function() {
       coordinates: [[]]
     }
   });
-
+  polygon.id = '__drawing_in_progress__';
   this.addFeature(polygon);
 
   this.clearSelectedFeatures();
@@ -78,6 +79,7 @@ DrawPolygon.onStop = function(state) {
   //remove last added coordinate
   state.polygon.removeCoordinate(`0.${state.currentVertexPosition}`);
   if (state.polygon.isValid()) {
+    state.polygon.id = hat();
     this.map.fire(Constants.events.CREATE, {
       features: [state.polygon.toGeoJSON()]
     });
